@@ -22,6 +22,15 @@ topics = [
         ),
     },
     {
+        "keywords": {"consult", "doctor", "specialist", "hospital", "clinic"},
+        "answer": (
+            "Doctor Consultation & Hospital Recommendations:\n"
+            "• You can ask any health question freely without hesitation.\n"
+            "• To recommend the best hospitals near you, please specify your city (e.g. Hyderabad, Bangalore, Delhi, Mumbai, Chennai, etc.).\n"
+            "• For nationwide PM-JAY Ayushman Bharat empanelled hospitals, dial toll-free 14555 or 104."
+        ),
+    },
+    {
         "keywords": {"appointment", "book", "token", "fee", "fees", "cost", "price", "ayushman", "pmjay", "card"},
         "answer": (
             "Registration & Fees:\n"

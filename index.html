@@ -418,7 +418,8 @@
         <div class="avatar assistant">🩺</div>
         <div class="message-bubble">
           <p>Namaste! I am your <strong>Arogya Seva Healthcare Assistant</strong>.</p>
-          <p>I can help answer questions regarding our clinic OPD hours, doctor appointments, fees (₹200 / Free under Ayushman Bharat / PM-JAY), or provide guidance on managing blood pressure, diabetes, and cholesterol.</p>
+          <p>🩺 <strong>Ask Any Health Question:</strong> Feel free to ask any health, symptom, dietary, or medical questions without hesitation.</p>
+          <p>🏥 <strong>Doctor Consultation:</strong> If you want to consult a doctor or specialist, share your <strong>city or area</strong> and I will recommend the best hospitals near you with contact details!</p>
           <p>How may I assist you today?</p>
           <span class="engine-pill">Indian Healthcare Assistant</span>
         </div>
@@ -427,6 +428,7 @@
 
     <!-- Quick Question Chips -->
     <div class="chips-container">
+      <button class="chip-btn" onclick="sendPrompt('I want to consult a doctor. Can you recommend the best hospital near me?')">🏥 Consult Doctor &amp; Nearby Hospitals</button>
       <button class="chip-btn" onclick="sendPrompt('What are the OPD timings and address of the clinic?')">🕒 OPD Timings &amp; Location</button>
       <button class="chip-btn" onclick="sendPrompt('How much is the consultation fee and do you accept Ayushman Bharat PM-JAY?')">💰 Fees &amp; Ayushman Bharat</button>
       <button class="chip-btn" onclick="sendPrompt('What is normal blood pressure and what Indian diet changes should I make?')">🩺 Normal BP &amp; Indian Diet</button>

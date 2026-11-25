@@ -21,6 +21,8 @@ You can test the live chatbot directly in your browser (no installation or local
 
 ## 🌟 Key Features
 
+* 🏥 **Doctor Consultation & Hospital Recommendation by Location:**
+  Users can ask any health question freely without hesitation. When they want to **consult an in-person doctor or specialist**, the bot asks for their **city/area** and recommends the top-rated government and private hospitals nearby, complete with full contact numbers, emergency casualty helplines, addresses, and Ayushman Bharat PM-JAY coverage details.
 * ♾️ **Limitless & Exhaustive Responses:**
   Configured without artificial token ceilings. When asked for full meal charts, multi-stage lifestyle guides, or detailed clinical literacy, the AI outputs the **complete, unabridged explanation** with zero mid-sentence cut-offs.
 * 🚑 **108 Indian Emergency Protocol:**

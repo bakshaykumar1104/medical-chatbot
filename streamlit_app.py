@@ -82,8 +82,9 @@ if "messages" not in st.session_state:
         {
             "role": "assistant",
             "content": "Namaste! I am your **Arogya Seva Healthcare Assistant**.\n\n"
-                       "I can help you with OPD hours, token registration, consultation fees (₹200 / Free with Ayushman Bharat PM-JAY), "
-                       "or Indian dietary advice for managing blood pressure, diabetes, and cholesterol. How can I assist you today?",
+                       "🩺 **Ask Any Health Question:** Feel free to ask about any symptoms, medical terms, blood pressure, sugar/diabetes, or Indian dietary guidance without hesitation.\n\n"
+                       "🏥 **Doctor Consultation & Hospital Finder:** If you wish to consult a doctor or see a specialist, simply tell me your **city or area** and I will recommend the best reputed hospitals near you along with their contact details.\n\n"
+                       "How may I assist you today?",
         }
     ]
 
@@ -123,14 +124,26 @@ if user_question:
                         "Content-Type": "application/json",
                     }
                     system_prompt = (
-                        "You are an empathetic, culturally aware clinical assistant for Arogya Seva Community Health Clinic in India. "
-                        "Analyze the user's message thoroughly and provide an in-depth, comprehensive, and exhaustive response. "
-                        "You have NO response length limit—freely explain everything necessary in full detail without holding back. "
-                        "Always complete all sections, meal charts, tables, explanations, and advice until 100% finished. "
-                        "If any life-threatening symptoms appear, emphasize calling 108 immediately. "
-                        "Base your answers on the following clinic knowledge:\n\n"
-                        f"{knowledge_text[:3000]}\n\n"
-                        "Provide practical Indian dietary and lifestyle guidance. Never prescribe allopathic drugs or dosages."
+                        "You are an empathetic, culturally aware clinical assistant for Arogya Seva Community Health Clinic in India.\n\n"
+                        "CORE OPERATING PRINCIPLES:\n"
+                        "1. HEALTH & MEDICAL QUESTIONS (FREE TO ASK):\n"
+                        "   - Users are encouraged to ask ANY health-related question without hesitation (symptoms, diet, wellness, lab tests, blood pressure, diabetes, cholesterol, etc.).\n"
+                        "   - Provide an in-depth, limitless, and comprehensive explanation with practical Indian lifestyle advice. Do NOT hold back or truncate.\n\n"
+                        "2. DOCTOR CONSULTATION & LOCATION-BASED HOSPITAL FINDER (CRITICAL):\n"
+                        "   - When a user indicates they want to consult a doctor, book an appointment, or visit a hospital:\n"
+                        "     • IF the user HAS NOT specified their location: Warmly ask: 'I would be happy to help you find the best doctor and hospital for your consultation! Could you please share your city, town, or area/district?'\n"
+                        "     • IF the user HAS specified their location (or gives their city/state):\n"
+                        "       Recommend the TOP reputable government and private hospitals in that location. For each hospital, provide:\n"
+                        "       a) Hospital Name & Area/Locality\n"
+                        "       b) Key Specialties & Facilities\n"
+                        "       c) OPD / Consultation Booking Contact Numbers\n"
+                        "       d) Emergency / Casualty Contact Number\n"
+                        "       e) Ayushman Bharat (PM-JAY) coverage info where applicable\n"
+                        "       Also mention the National Ayushman Bharat Helpline: 14555 and State Health Helpline: 104 for district-level hospital searches.\n\n"
+                        "3. EMERGENCY RED-FLAG PROTOCOL:\n"
+                        "   - If severe symptoms appear (chest pain, stroke signs, severe breathlessness, profuse bleeding), immediately urge calling 108 (Ambulance) or 112.\n\n"
+                        "4. Never prescribe allopathic drugs or antibiotic dosages.\n\n"
+                        f"Clinic & Indian Hospital Directory Reference:\n{knowledge_text[:4000]}"
                     )
                     answer = ""
                     for model_name in GROQ_MODELS:
@@ -162,6 +175,85 @@ if user_question:
                         "• **Sunday:** Closed for routine OPD (emergency cases directed to Government District Hospital / Area Hospital casualty, or call **108**).\n"
                         "• **Lab Blood Tests:** 7:00 AM to 10:30 AM daily for fasting samples."
                     )
+                elif any(k in q_lower for k in ["consult", "doctor", "specialist", "hospital", "clinic near me", "appointment"]):
+                    city_data = {
+                        "hyderabad": (
+                            "**Top Recommended Hospitals in Hyderabad for Doctor Consultation:**\n\n"
+                            "1. **Apollo Hospitals (Jubilee Hills)**\n"
+                            "   • Specialties: Cardiology, Oncology, Neurology, Orthopedics\n"
+                            "   • Consultation Booking: 040-23607777 | Emergency: 1066\n\n"
+                            "2. **Gandhi Hospital / Osmania General Hospital (Government Tertiary)**\n"
+                            "   • Free & Subsidized Super-Specialty Consultations\n"
+                            "   • Gandhi Hospital Contact: 040-27702222 | Osmania: 040-24600121\n\n"
+                            "3. **Yashoda Hospitals (Somajiguda / Secunderabad / Malakpet)**\n"
+                            "   • Multi-Specialty & Organ Transplant Center\n"
+                            "   • Contact: 040-45674567\n\n"
+                            "4. **Care Hospitals (Banjara Hills / Hitec City)**\n"
+                            "   • Contact: 040-61656565\n\n"
+                            "💡 *For nearby Ayushman Bharat / Aarogyasri empanelled hospitals, call toll-free: 14555.*"
+                        ),
+                        "bangalore": (
+                            "**Top Recommended Hospitals in Bengaluru (Bangalore):**\n\n"
+                            "1. **Manipal Hospital (Old Airport Road / Whitefield)**\n"
+                            "   • Contact: 080-25024444 | Toll-Free: 1800-102-5555\n\n"
+                            "2. **Victoria Hospital & BMCRI (Government Super-Specialty)**\n"
+                            "   • Contact: 080-26701150\n\n"
+                            "3. **Narayana Health City (Bommasandra)**\n"
+                            "   • Cardiac, Oncology & Multi-Specialty Care\n"
+                            "   • Contact: 080-71222222\n\n"
+                            "4. **Fortis Hospital (Bannerghatta Road / Cunningham Rd)**\n"
+                            "   • Contact: 080-66214444\n\n"
+                            "💡 *Ayushman Bharat Hospital Helpline: 14555.*"
+                        ),
+                        "delhi": (
+                            "**Top Recommended Hospitals in Delhi / NCR:**\n\n"
+                            "1. **AIIMS New Delhi (Ansari Nagar)**\n"
+                            "   • Premier Super-Specialty Care | Contact: 011-26588500 | Portal: orsdashboard.gov.in\n\n"
+                            "2. **Safdarjung Hospital & Dr. RML Hospital (Government)**\n"
+                            "   • Safdarjung: 011-26707444 | RML: 011-23365525\n\n"
+                            "3. **Max Super Speciality Hospital (Saket / Patparganj)**\n"
+                            "   • Contact: 011-26515050\n\n"
+                            "4. **Medanta The Medicity (Gurugram)**\n"
+                            "   • Contact: 0124-4141414\n\n"
+                            "💡 *National Health Helpline: 104 / 14555.*"
+                        ),
+                        "mumbai": (
+                            "**Top Recommended Hospitals in Mumbai:**\n\n"
+                            "1. **KEM Hospital & Sion Hospital (Government/Municipal)**\n"
+                            "   • KEM Contact: 022-24107000 | Sion: 022-24076381\n\n"
+                            "2. **Hinduja Hospital (Mahim / Khar)**\n"
+                            "   • Contact: 022-24451515\n\n"
+                            "3. **Lilavati Hospital (Bandra West)**\n"
+                            "   • Contact: 022-26751000\n\n"
+                            "4. **Kokilaben Dhirubhai Ambani Hospital (Andheri West)**\n"
+                            "   • Contact: 022-42696969\n\n"
+                            "💡 *PM-JAY Scheme Helpline: 14555.*"
+                        ),
+                        "chennai": (
+                            "**Top Recommended Hospitals in Chennai:**\n\n"
+                            "1. **Apollo Hospitals (Greams Road)**\n"
+                            "   • Contact: 044-28290200 | Emergency: 1066\n\n"
+                            "2. **Rajiv Gandhi Government General Hospital (RGGGH)**\n"
+                            "   • Contact: 044-25305000\n\n"
+                            "3. **MIOT International (Manapakkam)**\n"
+                            "   • Contact: 044-42002288\n\n"
+                            "💡 *State Health Helpline: 104 | PM-JAY: 14555.*"
+                        ),
+                    }
+                    found_city_info = None
+                    for c_key, c_val in city_data.items():
+                        if c_key in q_lower:
+                            found_city_info = c_val
+                            break
+                    if found_city_info:
+                        answer = found_city_info
+                    else:
+                        answer = (
+                            "I would be glad to help you find the best doctor and hospital for your consultation!\n\n"
+                            "📍 **Could you please tell me your city, town, or area?**\n\n"
+                            "Once you share your location, I will provide the top-recommended government and private hospitals near you with full appointment contact numbers, emergency helplines, and specialty details.\n\n"
+                            "*(Tip: You can also locate nearby Ayushman Bharat PM-JAY empanelled hospitals anytime by calling toll-free **14555** or **104**.)*"
+                        )
                 elif any(k in q_lower for k in ["fee", "fees", "cost", "price", "ayushman", "pmjay", "card"]):
                     answer = (
                         "**Consultation Fees & Ayushman Bharat Scheme:**\n\n"

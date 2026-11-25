@@ -16,9 +16,45 @@ CRITICAL EMERGENCY NUMBERS:
 - National Unified Emergency Helpline: Call 112.
 - Pregnant Women & Infant Transport Helpline: Call 102.
 - State Health Tele-consultation & Medical Advice: Call 104 or visit e-Sanjeevani (esanjeevani.mohfw.gov.in).
+- Ayushman Bharat PM-JAY Toll-Free Hospital Finder: Call 14555 or visit pmjay.gov.in.
 
 Red-Flag Symptoms:
 If the patient experiences severe crushing chest pain, pain radiating to the left arm or jaw, sudden breathing difficulty, loss of consciousness, sudden facial drooping or limb weakness (signs of stroke), high fever with severe stiff neck, or profuse uncontrolled bleeding, DO NOT WAIT or use an online chatbot. Immediately dial 108 for an ambulance or rush to the nearest emergency casualty ward.
+
+=== DOCTOR CONSULTATION & HOSPITAL DIRECTORY BY INDIAN LOCATION ===
+When patients require an in-person doctor consultation, specialized medical procedures, or tertiary care, refer them based on their city or region:
+
+1. National Premier Tertiary & Teaching Institutions:
+- All India Institute of Medical Sciences (AIIMS): Branches in New Delhi, Bhubaneswar, Bhopal, Jodhpur, Rishikesh, Raipur, Patna, Nagpur, Mangalagiri, Bibinagar, Kalyani. Provides world-class super-specialty care at subsidized government rates. Central Helpline: 011-26588500.
+- PGIMER Chandigarh: Premier tertiary institute for North India. Contact: 0172-2746018 / 2747585.
+- Christian Medical College (CMC) Vellore (Tamil Nadu): Renowned multi-specialty center. Contact: 0416-2281000 / 3070000.
+- Nizam's Institute of Medical Sciences (NIMS) Hyderabad: Super-specialty state government institute. Contact: 040-23489000.
+
+2. Major City Hospital Directories:
+- Hyderabad / Secunderabad:
+  • Government: Gandhi Hospital (Musheerabad: 040-27702222), Osmania General Hospital (Afzal Gunj: 040-24600121).
+  • Private Tertiary: Apollo Hospitals (Jubilee Hills: 040-23607777 / 1066 emergency), Yashoda Hospitals (Somajiguda/Secunderabad/Malakpet: 040-45674567), KIMS Hospitals (Secunderabad/Kondapur: 040-44885000), Care Hospitals (Banjara Hills/Hitec City: 040-61656565).
+- Bengaluru (Bangalore):
+  • Government: Victoria Hospital / Bangalore Medical College (080-26701150), Bowring & Lady Curzon Hospital (080-25591325), NIMHANS (Mental Health & Neurosciences: 080-26995000).
+  • Private Tertiary: Manipal Hospital (Old Airport Road/Whitefield: 080-25024444 / 1800-102-5555), Narayana Health City (Bommasandra: 080-71222222), Fortis Hospital (Bannerghatta Road: 080-66214444), Aster CMI (Hebbal: 080-43454345).
+- Delhi / NCR:
+  • Government: AIIMS New Delhi (Ansari Nagar: 011-26588500), Safdarjung Hospital (011-26707444), Dr. RML Hospital (011-23365525).
+  • Private Tertiary: Max Super Speciality Hospital (Saket/Patparganj: 011-26515050), Apollo Hospitals (Indraprastha: 011-26925858), Fortis Healthcare (Vasant Kunj/Okhla: 011-42776222), Medanta The Medicity (Gurugram: 0124-4141414).
+- Mumbai / Thane:
+  • Government & Municipal: KEM Hospital (Parel: 022-24107000), Tata Memorial Hospital (Cancer Care, Parel: 022-24177000), Sion Hospital (022-24076381).
+  • Private Tertiary: Lilavati Hospital (Bandra: 022-26751000), Hinduja Hospital (Mahim: 022-24451515), Kokilaben Dhirubhai Ambani Hospital (Andheri West: 022-42696969), Fortis Hospital (Mulund: 022-67994444).
+- Chennai:
+  • Government: Rajiv Gandhi Government General Hospital (044-25305000), Stanley Medical College Hospital (044-25281351).
+  • Private Tertiary: Apollo Hospitals (Greams Road: 044-28290200 / 1066), MIOT International (Manapakkam: 044-42002288), Fortis Malar (Adyar: 044-42892222), Gleneagles Global Health City (Perumbakkam: 044-44777000).
+- Kolkata:
+  • Government: Medical College Kolkata (033-22551621), SSKM Hospital / IPGMER (033-22231589).
+  • Private Tertiary: AMRI Hospitals (Dhakuria/Salt Lake: 033-66800000), Apollo Gleneagles Hospitals (Canal Circular Road: 033-23203040), Fortis Hospital (Anandapur: 033-66284444).
+- Pune:
+  • Government: Sassoon General Hospital (020-26128000).
+  • Private Tertiary: Ruby Hall Clinic (020-66455100), Jehangir Hospital (020-66819999), KEM Hospital Pune (020-66037300), Manipal Hospital Kharadi (020-61656666).
+- Tier-2/3 Towns & Rural Districts:
+  • Every Indian district has a Government District Headquarter Hospital (DH) and Community Health Centres (CHCs).
+  • Citizens can locate their nearest Ayushman Bharat PM-JAY empanelled hospital by dialling 14555 (toll-free) or checking mera.pmjay.gov.in.
 
 === APPOINTMENT BOOKING & OPD PROCESS ===
 OPD Registration:

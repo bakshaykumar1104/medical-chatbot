@@ -47,12 +47,25 @@ HOW YOU MUST RESPOND (NO GENERIC TEMPLATES):
      • Do NOT ask follow-up questions (like duration or intensity) that delay emergency action. Every minute counts for heart attacks and strokes.
      • Advise keeping the patient resting, calm, and seated while the 108 ambulance is on its way.
 
-3. CLINICAL CONTEXT & INDIAN HEALTH GUIDANCE:
+3. DOCTOR CONSULTATION & LOCATION-BASED HOSPITAL FINDER:
+   - Users can ask any health-related question without hesitation (symptoms, diet, wellness, lab tests).
+   - When a user indicates they want to consult a doctor, see a specialist, or visit a hospital:
+     • If the user HAS NOT specified their location: Ask them warmly for their city, town, or area/district so you can recommend the best facilities near them.
+     • If the user HAS provided their location (e.g. Hyderabad, Bengaluru, Delhi, Mumbai, Chennai, Kolkata, Pune, or other Indian cities/districts):
+       Provide the top-recommended government and private hospitals in that area with:
+       a) Hospital Name & Locality
+       b) Key Specialties & Doctor Consultation Info
+       c) Full Contact & Appointment Booking Numbers
+       d) Emergency Casualty Helpline
+       e) Ayushman Bharat (PM-JAY) coverage where applicable
+     • Mention the National Hospital Search Helpline: 14555 (PM-JAY) and 104 (State Health Helpline).
+
+4. CLINICAL CONTEXT & INDIAN HEALTH GUIDANCE:
    - Use the provided Reference Passages to accurately answer about clinic timings, doctor OPD, booking, tests, and fees (e.g. ₹200 OPD, Ayushman Bharat PM-JAY / Aarogyasri free coverage).
    - For health advice (blood pressure, diabetes, cholesterol), tailor guidance to Indian daily routines, diets (millets, rotis, sabzi, limiting pickles/namkeens/maida), and lifestyle.
    - If information is not in the clinic references, answer with sound general health literacy and advise seeing a local MBBS doctor.
 
-4. SAFETY BOUNDARIES:
+5. SAFETY BOUNDARIES:
    - Explain conditions and medical concepts in warm, simple language.
    - Do NOT provide specific drug prescriptions or antibiotic dosages. Always direct prescription decisions to an in-person doctor.
    - Structure responses cleanly with clear headings or bullet points when explaining multiple steps.
@@ -208,7 +221,82 @@ def analyze_and_synthesize_offline(question: str, top_passages: List[Dict[str, A
             "• **Lab Timing:** Fasting blood samples (Sugar, Lipid Profile) are collected from 7:00 AM to 10:30 AM daily."
         )
 
-    # 4. Intent: Appointments & Fees
+    # 4. Intent: Doctor Consultation & Hospital Recommendation by Location
+    if any(k in q_lower for k in ["consult", "doctor", "specialist", "hospital", "clinic near me"]):
+        city_directory = {
+            "hyderabad": (
+                "**Top Recommended Hospitals in Hyderabad for Doctor Consultation:**\n\n"
+                "1. **Apollo Hospitals (Jubilee Hills)**\n"
+                "   • Specialties: Cardiology, Neurology, Orthopedics, Oncology\n"
+                "   • Contact: 040-23607777 | Emergency: 1066\n\n"
+                "2. **Gandhi Hospital / Osmania General Hospital (Government Super-Specialty)**\n"
+                "   • Free & Subsidized Tertiary Care\n"
+                "   • Gandhi Hospital Contact: 040-27702222 | Osmania: 040-24600121\n\n"
+                "3. **Yashoda Hospitals (Somajiguda / Secunderabad / Malakpet)**\n"
+                "   • Contact: 040-45674567\n\n"
+                "4. **Care Hospitals (Banjara Hills / Hitec City)**\n"
+                "   • Contact: 040-61656565\n\n"
+                "💡 *For Ayushman Bharat / Aarogyasri empanelled hospitals, call toll-free: 14555.*"
+            ),
+            "bangalore": (
+                "**Top Recommended Hospitals in Bengaluru (Bangalore):**\n\n"
+                "1. **Manipal Hospital (Old Airport Road / Whitefield)**\n"
+                "   • Contact: 080-25024444 | Helpline: 1800-102-5555\n\n"
+                "2. **Victoria Hospital & BMCRI (Government Super-Specialty)**\n"
+                "   • Contact: 080-26701150\n\n"
+                "3. **Narayana Health City (Bommasandra)**\n"
+                "   • Cardiac Care & Organ Transplants | Contact: 080-71222222\n\n"
+                "4. **Fortis Hospital (Bannerghatta Road)**\n"
+                "   • Contact: 080-66214444\n\n"
+                "💡 *PM-JAY Scheme Helpline: 14555.*"
+            ),
+            "delhi": (
+                "**Top Recommended Hospitals in Delhi / NCR:**\n\n"
+                "1. **AIIMS New Delhi (Ansari Nagar)**\n"
+                "   • Contact: 011-26588500 | OPD Registration: orsdashboard.gov.in\n\n"
+                "2. **Safdarjung Hospital & Dr. RML Hospital (Government)**\n"
+                "   • Safdarjung: 011-26707444 | RML: 011-23365525\n\n"
+                "3. **Max Super Speciality Hospital (Saket / Patparganj)**\n"
+                "   • Contact: 011-26515050\n\n"
+                "4. **Medanta The Medicity (Gurugram)**\n"
+                "   • Contact: 0124-4141414\n\n"
+                "💡 *National Health Helpline: 104 / 14555.*"
+            ),
+            "mumbai": (
+                "**Top Recommended Hospitals in Mumbai:**\n\n"
+                "1. **KEM Hospital & Sion Hospital (Government/Municipal)**\n"
+                "   • KEM Contact: 022-24107000 | Sion: 022-24076381\n\n"
+                "2. **Hinduja Hospital (Mahim)**\n"
+                "   • Contact: 022-24451515\n\n"
+                "3. **Lilavati Hospital (Bandra West)**\n"
+                "   • Contact: 022-26751000\n\n"
+                "4. **Kokilaben Dhirubhai Ambani Hospital (Andheri West)**\n"
+                "   • Contact: 022-42696969\n\n"
+                "💡 *PM-JAY Scheme Helpline: 14555.*"
+            ),
+            "chennai": (
+                "**Top Recommended Hospitals in Chennai:**\n\n"
+                "1. **Apollo Hospitals (Greams Road)**\n"
+                "   • Contact: 044-28290200 | Emergency: 1066\n\n"
+                "2. **Rajiv Gandhi Government General Hospital (RGGGH)**\n"
+                "   • Contact: 044-25305000\n\n"
+                "3. **MIOT International (Manapakkam)**\n"
+                "   • Contact: 044-42002288\n\n"
+                "💡 *State Health Helpline: 104 | PM-JAY: 14555.*"
+            ),
+        }
+        for city_k, city_v in city_directory.items():
+            if city_k in q_lower:
+                return city_v
+
+        return (
+            "I would be glad to help you find the best doctor and hospital for your consultation!\n\n"
+            "📍 **Could you please tell me your city, town, or area?**\n\n"
+            "Once you share your location, I will provide the top-recommended government and private hospitals near you with full appointment contact numbers, emergency helplines, and specialty details.\n\n"
+            "*(Tip: You can also locate nearby Ayushman Bharat PM-JAY empanelled hospitals anytime by calling toll-free **14555** or **104**.)*"
+        )
+
+    # 5. Intent: Appointments & Fees
     if any(k in q_lower for k in ["appointment", "book", "token", "fee", "cost", "price", "pmjay", "ayushman"]):
         return (
             "**OPD Registration & Consultation Fees:**\n\n"
