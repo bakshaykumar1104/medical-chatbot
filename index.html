@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arogya Seva Clinic — Healthcare Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #059669;
+      --primary-hover: #047857;
+      --primary-light: #ecfdf5;
+      --surface: #ffffff;
+      --background: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 14px;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --warning: #d97706;
+      --warning-light: #fffbeb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--background);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+    }
+
+    .brand-title h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .brand-title p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .header-badges {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .emergency-pill-top {
+      background: var(--danger-light);
+      color: var(--danger);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid #fecaca;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: var(--border);
+      color: var(--text-muted);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #94a3b8;
+    }
+
+    .status-online {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .status-online .status-dot {
+      background: #10b981;
+    }
+
+    .status-fallback {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .status-fallback .status-dot {
+      background: #f59e0b;
+    }
+
+    /* Emergency Alert Banner */
+    .emergency-banner {
+      background: var(--danger-light);
+      border-bottom: 1px solid #fee2e2;
+      color: #991b1b;
+      padding: 8px 20px;
+      font-size: 0.84rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .emergency-banner strong {
+      color: #7f1d1d;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px 20px;
+      overflow: hidden;
+    }
+
+    /* Chat Messages Box */
+    #chat-box {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-right: 8px;
+      margin-bottom: 12px;
+    }
+
+    .message-row {
+      display: flex;
+      gap: 12px;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message-row.user {
+      justify-content: flex-end;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .avatar.assistant {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid #a7f3d0;
+    }
+
+    .avatar.user {
+      background: #e2e8f0;
+      color: #475569;
+    }
+
+    .message-bubble {
+      max-width: 84%;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      font-size: 0.93rem;
+      line-height: 1.6;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .message-row.user .message-bubble {
+      background: var(--primary);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .message-row.assistant .message-bubble {
+      background: var(--surface);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+    }
+
+    .message-bubble p {
+      margin-bottom: 8px;
+    }
+    .message-bubble p:last-child {
+      margin-bottom: 0;
+    }
+    .message-bubble ul {
+      margin-left: 20px;
+      margin-bottom: 8px;
+    }
+    .message-bubble li {
+      margin-bottom: 4px;
+    }
+
+    .engine-pill {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Passages Accordion */
+    details.passages-drawer {
+      margin-top: 10px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+    }
+
+    details.passages-drawer summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--primary);
+      user-select: none;
+    }
+
+    .passage-item {
+      margin-top: 8px;
+      padding: 6px 10px;
+      background: white;
+      border-left: 3px solid var(--primary);
+      border-radius: 4px;
+      font-size: 0.78rem;
+      color: #334155;
+    }
+
+    /* Suggestion Chips */
+    .chips-container {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 6px 2px 10px 2px;
+      margin-bottom: 4px;
+    }
+
+    .chip-btn {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .chip-btn:hover {
+      background: var(--primary-light);
+      border-color: #a7f3d0;
+      color: var(--primary);
+    }
+
+    /* Input Footer */
+    .input-form {
+      display: flex;
+      gap: 10px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 6px 14px;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .input-form input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.92rem;
+      padding: 8px 4px;
+      color: var(--text-main);
+    }
+
+    .send-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .send-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .send-btn:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    /* Spinner */
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 6px 0;
+    }
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: bounce 1.2s infinite ease-in-out;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">🏥</div>
+      <div class="brand-title">
+        <h1>Arogya Seva Health Clinic</h1>
+        <p>Community Healthcare Assistant • Indian State Guidelines</p>
+      </div>
+    </div>
+    <div class="header-badges">
+      <div class="emergency-pill-top">
+        <span>🚑 Helpline: <strong>108</strong> / <strong>112</strong></span>
+      </div>
+      <div id="status-badge" class="status-badge">
+        <div class="status-dot"></div>
+        <span id="status-text">Checking system...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Emergency / Medical Disclaimer Banner -->
+  <div class="emergency-banner">
+    🚨 <strong>Emergency Advisory:</strong> In severe emergencies (chest pain, stroke, breathlessness, heavy bleeding), dial <strong>108</strong> (Ambulance) or <strong>112</strong> immediately. This bot provides health literacy and clinic info, not clinical diagnosis.
+  </div>
+
+  <!-- Chat Area -->
+  <main>
+    <div id="chat-box">
+      <!-- Welcome Message -->
+      <div class="message-row assistant">
+        <div class="avatar assistant">🩺</div>
+        <div class="message-bubble">
+          <p>Namaste! I am your <strong>Arogya Seva Healthcare Assistant</strong>.</p>
+          <p>I can help answer questions regarding our clinic OPD hours, doctor appointments, fees (₹200 / Free under Ayushman Bharat / PM-JAY), or provide guidance on managing blood pressure, diabetes, and cholesterol.</p>
+          <p>How may I assist you today?</p>
+          <span class="engine-pill">Indian Healthcare Assistant</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Question Chips -->
+    <div class="chips-container">
+      <button class="chip-btn" onclick="sendPrompt('What are the OPD timings and address of the clinic?')">🕒 OPD Timings &amp; Location</button>
+      <button class="chip-btn" onclick="sendPrompt('How much is the consultation fee and do you accept Ayushman Bharat PM-JAY?')">💰 Fees &amp; Ayushman Bharat</button>
+      <button class="chip-btn" onclick="sendPrompt('What is normal blood pressure and what Indian diet changes should I make?')">🩺 Normal BP &amp; Indian Diet</button>
+      <button class="chip-btn" onclick="sendPrompt('What are the normal fasting blood sugar and HbA1c levels?')">🩸 Sugar Levels &amp; HbA1c</button>
+      <button class="chip-btn" onclick="sendPrompt('My family member is feeling sudden chest pain and sweating, what should I do?')">🚨 Chest Pain Emergency (108)</button>
+    </div>
+
+    <!-- User Input Form -->
+    <form id="chat-form" class="input-form" onsubmit="handleFormSubmit(event)">
+      <input 
+        id="user-input" 
+        type="text" 
+        placeholder="Type your question or symptom..." 
+        autocomplete="off"
+        required
+      />
+      <button id="send-btn" type="submit" class="send-btn" title="Send question">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </form>
+  </main>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+    const statusBadge = document.getElementById("status-badge");
+    const statusText = document.getElementById("status-text");
+
+    async function checkStatus() {
+      try {
+        const res = await fetch("/api/status");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.ollama && data.ollama.online) {
+            statusBadge.className = "status-badge status-online";
+            statusText.textContent = `Online (${data.active_model})`;
+          } else {
+            statusBadge.className = "status-badge status-fallback";
+            statusText.textContent = "Offline Knowledge Mode";
+          }
+        }
+      } catch (e) {
+        statusBadge.className = "status-badge";
+        statusText.textContent = "Server Disconnected";
+      }
+    }
+
+    checkStatus();
+    setInterval(checkStatus, 15000);
+
+    function formatText(text) {
+      let formatted = text
+        .replace(/\n\n/g, "</p><p>")
+        .replace(/\n/g, "<br>")
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\*(.*?)\*/g, "<em>$1</em>");
+      return `<p>${formatted}</p>`;
+    }
+
+    function appendUserMessage(text) {
+      const row = document.createElement("div");
+      row.className = "message-row user";
+      row.innerHTML = `
+        <div class="message-bubble">
+          <p>${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+        </div>
+        <div class="avatar user">👤</div>
+      `;
+      chatBox.appendChild(row);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function appendLoadingBubble() {
+      const row = document.createElement("div");
+      row.id = "loading-row";
+      row.className = "message-row assistant";
+      row.innerHTML = `
+        <div class="avatar assistant">🩺</div>
+        <div class="message-bubble">
+          <div class="typing-indicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
+      `;
+      chatBox.appendChild(row);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      return row;
+    }
+
+    function appendAssistantMessage(data) {
+      const loading = document.getElementById("loading-row");
+      if (loading) loading.remove();
+
+      const row = document.createElement("div");
+      row.className = "message-row assistant";
+
+      let passagesHtml = "";
+      if (data.passages && data.passages.length > 0) {
+        passagesHtml = `
+          <details class="passages-drawer">
+            <summary>📑 View ${data.passages.length} Grounding References</summary>
+            ${data.passages.map(p => `
+              <div class="passage-item">
+                <strong>[Ref #${p.id}]</strong> ${p.text}
+              </div>
+            `).join("")}
+          </details>
+        `;
+      }
+
+      row.innerHTML = `
+        <div class="avatar assistant">🩺</div>
+        <div class="message-bubble">
+          ${formatText(data.answer)}
+          ${passagesHtml}
+          <span class="engine-pill">${data.engine || "Clinical Engine"}</span>
+        </div>
+      `;
+      chatBox.appendChild(row);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function sendPrompt(text) {
+      userInput.value = text;
+      await submitQuestion(text);
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const question = userInput.value.trim();
+      if (!question) return;
+      await submitQuestion(question);
+    }
+
+    async function submitQuestion(question) {
+      userInput.value = "";
+      userInput.disabled = true;
+      sendBtn.disabled = true;
+
+      appendUserMessage(question);
+      appendLoadingBubble();
+
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question })
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+
+        const data = await response.json();
+        appendAssistantMessage(data);
+      } catch (err) {
+        const loading = document.getElementById("loading-row");
+        if (loading) loading.remove();
+
+        const row = document.createElement("div");
+        row.className = "message-row assistant";
+        row.innerHTML = `
+          <div class="avatar assistant">⚠️</div>
+          <div class="message-bubble" style="border-color:#fca5a5; background:#fff1f2;">
+            <p><strong>Error:</strong> Could not connect to the assistant server. Please ensure the server is running.</p>
+          </div>
+        `;
+        chatBox.appendChild(row);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      } finally {
+        userInput.disabled = false;
+        sendBtn.disabled = false;
+        userInput.focus();
+      }
+    }
+  </script>
+</body>
+</html>

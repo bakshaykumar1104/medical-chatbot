@@ -1,0 +1,66 @@
+# Arogya Seva Health Clinic — Knowledge Base (Indian State Healthcare)
+
+=== CLINIC OVERVIEW & LOCAL TIMINGS ===
+Arogya Seva Community Health Clinic is located at Plot 45, Main Hospital Road, Gandhi Nagar.
+Contact: (040) 2345-6789 / +91 98765 43210.
+OPD (Outpatient Department) Working Hours:
+- Monday to Saturday:
+  • Morning OPD: 8:30 AM to 1:00 PM
+  • Evening OPD: 4:30 PM to 8:00 PM
+- Sunday: Closed for routine OPD. (Emergency/Casualty services are directed to the nearest Government District Hospital / Area Hospital).
+- Consultation Fee: General OPD consultation is ₹200. Consultations and essential generic medicines are free for patients registered under Ayushman Bharat PM-JAY and State Government Health Cards (Aarogyasri / Chief Minister Relief Fund).
+
+=== EMERGENCY NUMBERS & RED-FLAG MEDICAL PROTOCOLS ===
+CRITICAL EMERGENCY NUMBERS:
+- Medical Emergency & Free Ambulance Service: Call 108 immediately.
+- National Unified Emergency Helpline: Call 112.
+- Pregnant Women & Infant Transport Helpline: Call 102.
+- State Health Tele-consultation & Medical Advice: Call 104 or visit e-Sanjeevani (esanjeevani.mohfw.gov.in).
+
+Red-Flag Symptoms:
+If the patient experiences severe crushing chest pain, pain radiating to the left arm or jaw, sudden breathing difficulty, loss of consciousness, sudden facial drooping or limb weakness (signs of stroke), high fever with severe stiff neck, or profuse uncontrolled bleeding, DO NOT WAIT or use an online chatbot. Immediately dial 108 for an ambulance or rush to the nearest emergency casualty ward.
+
+=== APPOINTMENT BOOKING & OPD PROCESS ===
+OPD Registration:
+- Patients can walk in during OPD hours to get a registration token from the front desk, or pre-book a token via WhatsApp or the clinic website portal.
+- For specialist visits (Gynecologist, Pediatrician, Cardiologist, Diabetologist), prior appointment booking is strongly recommended.
+- Blood collection for fasting tests (Fasting Blood Sugar, Lipid Profile) is done at the on-site lab from 7:00 AM to 10:30 AM daily (Monday through Saturday).
+
+=== COMMON HEALTH TOPICS & INDIAN DIETARY GUIDANCE ===
+
+Blood Pressure & Hypertension:
+Blood pressure measures the pressure of blood against your artery walls. It is recorded as Systolic (top number, during heartbeat) over Diastolic (bottom number, when heart rests).
+- Normal: Less than 120/80 mmHg.
+- High Blood Pressure (Hypertension): 130/80 mmHg or above.
+- Indian Dietary & Lifestyle Advice:
+  • Strictly limit table salt, papads, pickles (achar), namkeens, and processed snacks.
+  • Aim for less than 1 level teaspoon (approx. 5 grams) of salt per day.
+  • Include fiber-rich Indian grains: millets (ragi, jowar, bajra), whole wheat rotis, and brown rice.
+  • Engage in 30 to 45 minutes of brisk walking or yoga daily.
+  • Take prescribed BP tablets consistently every morning at the same time; do not stop taking medication even if you feel fine.
+
+Diabetes (Sugar) & HbA1c Management:
+Type 2 Diabetes is a metabolic disorder where blood glucose remains elevated due to insulin resistance.
+- Diagnosis & Monitoring:
+  • Fasting Blood Sugar: Normal is 70-99 mg/dL; 126 mg/dL or higher on repeat tests indicates diabetes.
+  • Post-Prandial (2 hours after meal): Normal is under 140 mg/dL.
+  • HbA1c Test: Measures average 3-month blood sugar. Normal is below 5.7%; 6.5% or higher indicates diabetes.
+- Dietary Advice for Indian Patients:
+  • Reduce refined carbohydrates (maida, white polished rice, bakery items, sweets, sugary chai/coffee).
+  • Increase protein and fiber: chana, moong dal, paneer, sprouts, leafy vegetables (palak, methi), and salads before main meals.
+  • Avoid drinking sweetened fruit juices; eat whole fruits with low glycemic index (guava, apple, papaya in moderation).
+
+Cholesterol & Heart Health:
+- Total Cholesterol should ideally be under 200 mg/dL.
+- LDL ("Bad" cholesterol): Under 100 mg/dL (lower if diabetic or heart patient).
+- HDL ("Good" cholesterol): Above 40 mg/dL for men, above 50 mg/dL for women.
+- Triglycerides: Under 150 mg/dL.
+- Indian Context Tips:
+  • Minimize deep-fried foods (samosas, pakodas, vadas).
+  • Limit re-used cooking oils and hydrogenated fats (vanaspati/dalda).
+  • Rotate cooking oils (e.g. mustard oil, groundnut oil, rice bran oil) and consume in controlled amounts (under 500 ml per person per month).
+
+=== CHATBOT MEDICAL BOUNDARIES ===
+- This assistant provides general health literacy, lifestyle awareness, and clinic information.
+- It CANNOT diagnose medical conditions or prescribe allopathic medicines/antibiotic dosages.
+- Always consult a qualified MBBS/MD doctor for clinical diagnosis and individualized treatment plans.
