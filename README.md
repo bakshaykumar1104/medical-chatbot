@@ -1,106 +1,100 @@
-# Medical RAG Chatbot — Complete Project Guide
+# 🏥 Arogya Seva — AI Healthcare & Clinic Assistant
 
-A full-stack, local-first **Healthcare & Clinic Information Chatbot** featuring **Retrieval-Augmented Generation (RAG)**, local AI models (via **Ollama**), and an interactive modern web interface.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io)
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?logo=fastapi&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.32+-FF4B4B?logo=streamlit&logoColor=white)
+![Emergency](https://img.shields.io/badge/Emergency-108%20%2F%20112-red)
+
+An intelligent, culturally grounded **Healthcare & Clinic Information Chatbot** tailored for **Indian State Healthcare Systems**. Grounded in clinical literacy and local clinic protocols, featuring real-time **108 Emergency Ambulance Triage**, OPD booking guidance, Ayushman Bharat (PM-JAY) schemes, and lifestyle health guidance.
+
+---
+
+## 🌐 Live Web Demo
+
+You can test the live chatbot directly in your browser (no installation required):
+
+👉 **[Launch Arogya Seva Chatbot](https://share.streamlit.io)**  
+*(Hosted 24/7 on Streamlit Community Cloud)*
 
 ---
 
 ## 🌟 Key Features
 
-1. **Local-First & Offline Capable**: Runs completely on your computer with Ollama (`gemma3:4b` + `embeddinggemma`), ensuring zero per-query API bills and full privacy.
-2. **Retrieval-Augmented Generation (RAG)**: Answers questions based on clinic policies, hours, services, and reviewed medical literacy documents in `knowledge.txt`.
-3. **Clinical Safeguards & Guardrails**:
-   - Explicit warnings and immediate emergency triage advice for life-threatening symptoms (e.g. chest pain, breathing difficulty).
-   - Strict instructions barring diagnostic claims, prescriptions, and dosage advice.
-4. **Interactive Modern Web UI**: Fast, responsive HTML5/JS interface with quick question chips, expandable source citations, and real-time backend status detection.
-5. **Multiple Interfaces**:
-   - **Modern Web App (Recommended)**: `server.py` + `index.html` (FastAPI + RAG + Ollama)
-   - **Streamlit Interface**: `streamlit_app.py`
-   - **Zero-Dependency Terminal Bot**: `simple_bot.py`
+* 🚑 **108 Indian Emergency Triage:**
+  Immediate high-priority alert and instructions to dial **108** (Ambulance) or **112** (National Emergency) upon detecting acute symptoms like severe chest pain, left-arm numbness, stroke signs, breathlessness, or trauma.
+* 🧠 **No Robotic Templates:**
+  Intelligently analyzes incoming messages for clinical intent, urgency, and user context to synthesize warm, natural, and personalized responses.
+* 🏛️ **Indian Healthcare & Public Schemes:**
+  Answers queries about clinic OPD timings, token registration, consultation fees (₹200), and free coverage under **Ayushman Bharat (PM-JAY)** and State Health Cards (e.g. Aarogyasri).
+* 🥗 **Indian Lifestyle & Dietary Guidance:**
+  Practical advice on managing Hypertension and Type 2 Diabetes suited for Indian diets (millets, ragi, jowar, whole wheat rotis, limiting pickles/achar, papads, and namkeens).
+* 🔒 **Strict Medical Safety Guardrails:**
+  Provides health literacy and doctor visit preparation while explicitly barring unauthorized prescription of allopathic drugs and antibiotic dosages.
 
 ---
 
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```
-Chatbot/
-├── knowledge.txt        # Verified clinic FAQ and medical literacy knowledge base
-├── server.py            # FastAPI RAG backend (chunking, vector search, Ollama chat)
-├── index.html           # Modern responsive web chat interface with source citations
-├── streamlit_app.py     # Streamlit web UI alternative
+medical-chatbot/
+├── streamlit_app.py     # 24/7 Cloud deployment app (Streamlit Cloud + Cloud AI)
+├── server.py            # High-performance FastAPI RAG backend
+├── index.html           # Modern responsive HTML5/JS web chat interface
+├── knowledge.txt        # Verified Indian clinic protocols and health literacy data
 ├── simple_bot.py        # Lightweight zero-dependency rule-based terminal bot
-├── requirements.txt     # Python package dependencies
-├── start.bat            # Windows 1-click startup script
-└── README.md            # Comprehensive project documentation
+├── requirements.txt     # Python dependencies
+├── start.bat            # Windows 1-click local launcher
+└── README.md            # Project documentation
 ```
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 How to Run Locally
 
-### Step 1: Set Up Python Virtual Environment
+### 1. Clone & Set Up Environment
+```bash
+git clone https://github.com/bakshaykumar1104/medical-chatbot.git
+cd medical-chatbot
 
-Open PowerShell in `c:\Users\aksha\Chatbot`:
-
-```powershell
-# Create virtual environment
 python -m venv .venv
+# On Windows:
+.\.venv\Scripts\activate
+# On Linux/macOS:
+source .venv/bin/activate
 
-# Activate and install dependencies
-.\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
+
+### 2. Run Options
+
+#### Option A: Streamlit Web Dashboard
+```bash
+streamlit run streamlit_app.py
+```
+Open [http://localhost:8501](http://localhost:8501).
+
+#### Option B: FastAPI Backend + Custom HTML UI
+```bash
+python server.py
+```
+Open [http://localhost:8000](http://localhost:8000).
 
 ---
 
-### Step 2: Configure Ollama (Local AI)
+## ⚙️ Cloud Deployment (24/7 Free)
 
-Ollama is already installed on your system. To use the local AI models:
-
-1. **Start Ollama service**:
-   ```powershell
-   ollama serve
+This repository is configured for 1-click deployment on **Streamlit Community Cloud**:
+1. Fork or push this repository to GitHub.
+2. Sign in to [share.streamlit.io](https://share.streamlit.io).
+3. Select this repository and set **Main file path** to `streamlit_app.py`.
+4. In **App Settings → Secrets**, add your free Groq API key:
+   ```toml
+   GROQ_API_KEY = "your_groq_api_key_here"
    ```
-2. **Download the recommended models** (in another terminal):
-   ```powershell
-   # Chat model (~3.4 GB)
-   ollama pull gemma3:4b
-
-   # Embedding model for RAG search
-   ollama pull embeddinggemma
-   ```
-
-*(Note: If you run the server before Ollama models are pulled, the server will automatically activate **Local Fallback Mode** with TF-IDF indexing so you can still search and test without errors!)*
+5. Click **Deploy!**
 
 ---
 
-### Step 3: Run the Chatbot
-
-#### Option A: Modern Web App (Recommended)
-Run:
-```powershell
-.\.venv\Scripts\python.exe server.py
-```
-Or simply double-click **`start.bat`**.
-
-Then open your browser to: **[http://127.0.0.1:8000](http://127.0.0.1:8000)**.
-
-#### Option B: Streamlit Dashboard
-```powershell
-.\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
-```
-Open: **[http://localhost:8501](http://localhost:8501)**.
-
-#### Option C: Terminal Rule-Based Bot (Zero Dependencies)
-```powershell
-python simple_bot.py
-```
-
----
-
-## ⚙️ Customizing the Knowledge Base
-
-To add your own clinic schedules, doctor names, or patient guides:
-1. Open `knowledge.txt`.
-2. Add your text blocks separated by double line breaks (`\n\n`).
-3. Save the file.
-4. Send a `POST` request to `http://127.0.0.1:8000/api/reload-knowledge` or restart `server.py` to re-index automatically.
+## ⚠️ Medical Disclaimer
+This application is an educational prototype and clinic FAQ tool. It is **not** a diagnostic device and cannot replace consultation with a qualified medical professional. In life-threatening emergencies, always dial **108** or visit the nearest hospital casualty ward.

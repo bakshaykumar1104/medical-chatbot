@@ -53,12 +53,16 @@ with st.sidebar:
     except Exception:
         pass
 
-    user_api_key = st.text_input(
-        "Groq API Key (Free):",
-        value=saved_key or GROQ_API_KEY,
-        type="password",
-        help="Get a 100% free key at console.groq.com (no credit card needed).",
-    )
+    if saved_key:
+        st.success("Cloud AI: Connected & Active ✅")
+        user_api_key = saved_key
+    else:
+        user_api_key = st.text_input(
+            "Groq API Key (Free):",
+            value=GROQ_API_KEY,
+            type="password",
+            help="Get a 100% free key at console.groq.com (no credit card needed).",
+        )
 
     st.divider()
     st.subheader("🚑 Indian Helplines")
