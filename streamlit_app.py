@@ -9,7 +9,7 @@ KNOWLEDGE_FILE = BASE_DIR / "knowledge.txt"
 # Default configuration
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.8-27b"]
 
 st.set_page_config(
     page_title="Arogya Seva Healthcare Assistant",
@@ -126,21 +126,24 @@ if user_question:
                         f"{knowledge_text[:3000]}\n\n"
                         "Provide practical Indian dietary and lifestyle guidance. Never prescribe allopathic drugs or dosages."
                     )
-                    payload = {
-                        "model": GROQ_MODEL,
-                        "messages": [
-                            {"role": "system", "content": system_prompt},
-                            *st.session_state.messages[-4:],
-                        ],
-                        "temperature": 0.4,
-                        "max_tokens": 600,
-                    }
-                    resp = requests.post(GROQ_URL, headers=headers, json=payload, timeout=20)
-                    if resp.status_code == 200:
-                        data = resp.json()
-                        answer = data["choices"][0]["message"]["content"]
-                    else:
-                        answer = f"Cloud AI returned error ({resp.status_code}). Falling back to local clinic knowledge."
+                    answer = ""
+                    for model_name in GROQ_MODELS:
+                        payload = {
+                            "model": model_name,
+                            "messages": [
+                                {"role": "system", "content": system_prompt},
+                                *st.session_state.messages[-4:],
+                            ],
+                            "temperature": 0.4,
+                            "max_tokens": 600,
+                        }
+                        resp = requests.post(GROQ_URL, headers=headers, json=payload, timeout=20)
+                        if resp.status_code == 200:
+                            data = resp.json()
+                            answer = data["choices"][0]["message"]["content"]
+                            break
+                    if not answer:
+                        answer = ""
                 except Exception:
                     answer = ""
 
