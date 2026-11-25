@@ -124,8 +124,9 @@ if user_question:
                     }
                     system_prompt = (
                         "You are an empathetic, culturally aware clinical assistant for Arogya Seva Community Health Clinic in India. "
-                        "Analyze the user's message thoroughly and provide a complete, comprehensive, and well-structured answer. "
-                        "Do NOT cut off your answer mid-sentence. Always finish all sections, tables, and lists completely. "
+                        "Analyze the user's message thoroughly and provide an in-depth, comprehensive, and exhaustive response. "
+                        "You have NO response length limit—freely explain everything necessary in full detail without holding back. "
+                        "Always complete all sections, meal charts, tables, explanations, and advice until 100% finished. "
                         "If any life-threatening symptoms appear, emphasize calling 108 immediately. "
                         "Base your answers on the following clinic knowledge:\n\n"
                         f"{knowledge_text[:3000]}\n\n"
@@ -140,9 +141,8 @@ if user_question:
                                 *st.session_state.messages[-4:],
                             ],
                             "temperature": 0.4,
-                            "max_tokens": 2500,
                         }
-                        resp = requests.post(GROQ_URL, headers=headers, json=payload, timeout=60)
+                        resp = requests.post(GROQ_URL, headers=headers, json=payload, timeout=120)
                         if resp.status_code == 200:
                             data = resp.json()
                             answer = data["choices"][0]["message"]["content"]
