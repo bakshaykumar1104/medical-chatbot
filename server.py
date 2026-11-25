@@ -347,7 +347,7 @@ def handle_chat(body: QuestionRequest):
                 "options": {
                     "temperature": 0.4,
                     "num_ctx": 4096,
-                    "num_predict": 600,
+                    "num_predict": 2048,
                 },
             }
             resp = session.post(f"{OLLAMA_HOST}/api/chat", json=payload, timeout=(5, 120))
